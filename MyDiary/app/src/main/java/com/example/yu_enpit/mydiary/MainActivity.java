@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements DiaryListFragment
                 long nextId = 0;
                 if(maxId != null)nextId = maxId.longValue() + 1;
                 //createObjectではIDを渡してオブジェクトを生成する
-                Diary diary = realm.createObject(Diary.class,new Long(nextId));
+                Diary diary = realm.createObject(Diary.class, new Long(nextId));
                 diary.title="テストタイトル";
                 diary.bodyText="テスト本文です。";
                 diary.date="Feb 22";
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements DiaryListFragment
         InputDiaryFragment inputDiaryFragment = InputDiaryFragment.newInstance(nextId);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, inputDiaryFragment,"InputDiaryFragment");
         transaction.addToBackStack(null);
         transaction.commit();
     }

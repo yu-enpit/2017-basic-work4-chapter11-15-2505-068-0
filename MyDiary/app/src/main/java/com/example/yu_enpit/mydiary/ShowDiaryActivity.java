@@ -7,9 +7,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,8 +40,6 @@ public class ShowDiaryActivity extends AppCompatActivity {
                 shareIntent.putExtra(Intent.EXTRA_TEXT,mBodyText);
                 shareIntent.setType("text/plain");
                 startActivity(shareIntent);
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,10 +47,10 @@ public class ShowDiaryActivity extends AppCompatActivity {
         mRealm = Realm.getDefaultInstance();
 
         Intent intent = getIntent();
-        final long diaryId = intent.getLongExtra(DIARY_ID, ERR_CD);
+        final long diaryId = intent.getLongExtra(DIARY_ID,ERR_CD);
 
         TextView body = (TextView)findViewById(R.id.body);
-        ImageView imageView = (ImageView) findViewById(R.id.toolbar_image);
+        ImageView imageView = (ImageView)findViewById(R.id.toolbar_image);
         NestedScrollView scrollView = (NestedScrollView)findViewById(R.id.scroll_view);
 
         Diary diary = mRealm.where(Diary.class).equalTo("id",diaryId).findFirst();
@@ -79,11 +77,14 @@ public class ShowDiaryActivity extends AppCompatActivity {
             scrollView.setBackgroundColor(bodyColor);
             body.setTextColor(titleColor);
             fab.setBackgroundTintList(ColorStateList.valueOf(iconColor));
+
         }
     }
+
     @Override
-    protected  void inDestroy(){
+    protected void onDestroy(){
         super.onDestroy();
         mRealm.close();
+
     }
 }

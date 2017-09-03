@@ -142,12 +142,10 @@ public class InputDiaryFragment extends Fragment {
     public void onActivityResult(int requestCode,int resultCode,Intent data){
        super.onActivityResult(requestCode,resultCode,data);
        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-
            Uri uri = (data == null) ? null : data.getData();
            if(uri != null){
                try {
-                   Bitmap img = MyUtils.getImageFromStream(
-                           getActivity().getContentResolver(), uri);
+                   Bitmap img = MyUtils.getImageFromStream(getActivity().getContentResolver(), uri);
                    mDiaryImage.setImageBitmap(img);
                }catch(IOException e){
                    e.printStackTrace();

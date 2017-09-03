@@ -1,10 +1,10 @@
 package com.example.yu_enpit.mydiary;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +19,9 @@ import io.realm.RealmRecyclerViewAdapter;
  * Created by v068ff on 2017/08/08.
  */
 
-public class  DiaryRealmAdapter extends RealmRecyclerViewAdapter<Diary,DiaryRealmAdapter.DiaryViewHolder> {
+public class DiaryRealmAdapter extends RealmRecyclerViewAdapter<Diary,DiaryRealmAdapter.DiaryViewHolder> {
 
-    FragmentActivity context;
-
-
+    Context context;
 
     public static class DiaryViewHolder extends RecyclerView.ViewHolder{
         protected TextView title;
@@ -40,14 +38,13 @@ public class  DiaryRealmAdapter extends RealmRecyclerViewAdapter<Diary,DiaryReal
         }
     }
 
-    public DiaryRealmAdapter(@NonNull FragmentActivity context, @Nullable OrderedRealmCollection<Diary>data, boolean autoUpdate){
+    public DiaryRealmAdapter(@NonNull Context context, @Nullable OrderedRealmCollection<Diary> data, boolean autoUpdate){
         super(data,autoUpdate);
         this.context = context;
     }
 
     @Override
     public DiaryViewHolder onCreateViewHolder(ViewGroup parent , int viewType){
-
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
         final DiaryViewHolder holder = new DiaryViewHolder(itemView);
 
@@ -65,7 +62,6 @@ public class  DiaryRealmAdapter extends RealmRecyclerViewAdapter<Diary,DiaryReal
         });
         return holder;
     }
-
 
     @Override
     public void onBindViewHolder(DiaryViewHolder holder,int position){
