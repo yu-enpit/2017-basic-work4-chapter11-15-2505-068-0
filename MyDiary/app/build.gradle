@@ -5,7 +5,6 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        vectorDrawables.useSupportLibrary = true
         applicationId "com.example.yu_enpit.mydiary"
         minSdkVersion 16
         targetSdkVersion 26

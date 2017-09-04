@@ -23,7 +23,6 @@ public class ShowDiaryActivity extends AppCompatActivity {
 
     private String mBodyText;
     private Realm mRealm;
-    private Bitmap mBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class ShowDiaryActivity extends AppCompatActivity {
         ImageView imageView = (ImageView)findViewById(R.id.toolbar_image);
         NestedScrollView scrollView = (NestedScrollView)findViewById(R.id.scroll_view);
 
+
         Diary diary = mRealm.where(Diary.class).equalTo("id",diaryId).findFirst();
         CollapsingToolbarLayout layout = (CollapsingToolbarLayout)findViewById(R.id.toolbar_layout);
         layout.setTitle(diary.title);
@@ -62,7 +62,7 @@ public class ShowDiaryActivity extends AppCompatActivity {
         body.setText(diary.bodyText);
         byte[] bytes = diary.image;
         if(bytes != null && bytes.length > 0){
-            mBitmap = MyUtils.getImageFromByte(bytes);
+            Bitmap mBitmap = MyUtils.getImageFromByte(bytes);
             imageView.setImageBitmap(mBitmap);
 
             Palette palette = Palette.from(mBitmap).generate();
@@ -85,6 +85,5 @@ public class ShowDiaryActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         mRealm.close();
-
     }
 }

@@ -45,7 +45,7 @@ public class DiaryListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_diary_list,container,false);
-        RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.recycler);
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -107,7 +107,7 @@ public class DiaryListFragment extends Fragment {
                 final RealmResults<Diary> diaries = mRealm.where(Diary.class).findAll();
                 mRealm.executeTransaction(new Realm.Transaction(){
                     @Override
-                    public void execute(Realm realm){ diaries.deleteAllFromRealm();}
+                    public void execute(Realm realm){diaries.deleteAllFromRealm();}
                 });
                 return true;
         }

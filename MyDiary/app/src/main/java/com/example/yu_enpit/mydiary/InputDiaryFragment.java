@@ -132,10 +132,7 @@ public class InputDiaryFragment extends Fragment {
    private void pickImage() {
        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
        intent.setType("image/*");
-       startActivityForResult(
-               Intent.createChooser(
-                       intent, getString(R.string.pick_image)), REQUEST_CODE
-       );
+       startActivityForResult(Intent.createChooser(intent, getString(R.string.pick_image)), REQUEST_CODE);
    }
 
    @Override
@@ -166,8 +163,7 @@ public class InputDiaryFragment extends Fragment {
    }
 
    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,@NonNull int[] grantResults){
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults){
        if(requestCode == PERMISSION_REQUEST_CODE){
            if(grantResults.length != 1 || grantResults[0] != PackageManager.PERMISSION_GRANTED){
                Snackbar.make(mDiaryImage,R.string.permission_deny,Snackbar.LENGTH_LONG).show();

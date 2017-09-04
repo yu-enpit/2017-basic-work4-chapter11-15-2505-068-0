@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements DiaryListFragment
 
         createTestData();
         showDiaryList();
-
     }
 
     @Override
@@ -70,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements DiaryListFragment
         mRealm.beginTransaction();
         Number maxId = mRealm.where(Diary.class).max("id");
         long nextId = 0;
-        if(maxId != null)nextId = maxId.longValue() + 1;
-        Diary diary = mRealm.createObject(Diary.class,new Long(nextId));
+        if(maxId != null) nextId = maxId.longValue() + 1;
+        Diary diary = mRealm.createObject(Diary.class, new Long(nextId));
         diary.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
         mRealm.commitTransaction();
 
